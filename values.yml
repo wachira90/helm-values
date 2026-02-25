@@ -14,8 +14,17 @@ image:
   tag: ""
 
 
+secrets:
+  dbPassword: "admin"
+  dbredisauth: "my-redis-auth"
+  
 env:
   TZ: "Asia/Bangkok"
+
+# secretEnv:
+#   DB_PASSWORD:
+#     secretName: postgres-secret
+#     secretKey: password
 
 # env:
 #   APP_ENV: "production"

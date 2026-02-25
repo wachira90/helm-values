@@ -44,6 +44,16 @@ spec:
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "meet.fullname" . }}-secret
+                  key: db-password
+            - name: DB_REDISAUTH
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "meet.fullname" . }}-secret
+                  key: db-redisauth
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
