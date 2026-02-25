@@ -65,7 +65,9 @@ service:
 ingress:
   enabled: true
   className: "public"
-  annotations: {}
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+  # annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
