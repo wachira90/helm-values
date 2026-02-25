@@ -13,6 +13,17 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+
+env:
+  TZ: "Asia/Bangkok"
+
+# env:
+#   APP_ENV: "production"
+#   LOG_LEVEL: "info"
+#   DB_HOST: "postgres.default.svc.cluster.local"
+#   DB_PORT: "5432"
+
+
 # This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 
