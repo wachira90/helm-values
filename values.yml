@@ -71,7 +71,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: meet.example.com
+    - host: meet.172-17-26-246.nip.io
       paths:
         - path: /
           pathType: ImplementationSpecific
@@ -79,7 +79,7 @@ ingress:
   tls:
     - secretName: ssl-tls
       hosts:
-        - meet.example.com
+        - meet.172-17-26-246.nip.io
 
 # resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -95,20 +95,22 @@ resources:
     memory: 128Mi
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
+livenessProbe: {}
+# livenessProbe:
+#   httpGet:
+#     path: /
+#     port: http
+# readinessProbe:
+#   httpGet:
+#     path: /
+#     port: http
 
 #This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
-  enabled: fasle
+  # enabled: true
+  enabled: false
   minReplicas: 1
-  maxReplicas: 1
+  maxReplicas: 4
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
@@ -131,21 +133,23 @@ volumeMounts: []
 
 # affinity: {}
 
-nodeSelector:
-  forapp: fda-app
 
-tolerations:
-  - key: "forapp"
-    operator: "Equal"
-    value: "fda-app"
-    effect: "NoSchedule"
+
+# nodeSelector:
+#   forapp: fda-app
+
+# tolerations:
+#   - key: "forapp"
+#     operator: "Equal"
+#     value: "fda-app"
+#     effect: "NoSchedule"
     
-affinity:
-  podAntiAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-      - podAffinityTerm:
-          labelSelector:
-            matchLabels:
-              app: meet
-          topologyKey: topology.kubernetes.io/zone
-        weight: 100
+# affinity:
+#   podAntiAffinity:
+#     preferredDuringSchedulingIgnoredDuringExecution:
+#       - podAffinityTerm:
+#           labelSelector:
+#             matchLabels:
+#               app: meet
+#           topologyKey: topology.kubernetes.io/zone
+#         weight: 100
